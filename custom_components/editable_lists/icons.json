@@ -1,0 +1,25 @@
+{
+  "services": {
+    "set": {
+      "service": "mdi:playlist-edit"
+    },
+    "add": {
+      "service": "mdi:playlist-plus"
+    },
+    "update": {
+      "service": "mdi:pencil"
+    },
+    "remove": {
+      "service": "mdi:playlist-minus"
+    },
+    "move": {
+      "service": "mdi:swap-vertical"
+    },
+    "rotate": {
+      "service": "mdi:rotate-right"
+    },
+    "get": {
+      "service": "mdi:playlist-check"
+    }
+  }
+}
