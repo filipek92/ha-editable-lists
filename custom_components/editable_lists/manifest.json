@@ -1,0 +1,18 @@
+{
+  "domain": "editable_lists",
+  "name": "Editable Lists",
+  "codeowners": [
+    "@filipek92"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http"
+  ],
+  "documentation": "https://github.com/filipek92/ha-editable-lists",
+  "integration_type": "helper",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/filipek92/ha-editable-lists/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

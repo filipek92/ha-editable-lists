@@ -1,0 +1,193 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "New list",
+        "description": "Optional schema. **columns** = list of objects, for example:\n```\n- key: name\n  label: Name\n  required: true\n  unique: true\n- key: role\n  type: enum\n  options: [admin, user]\n- key: active\n  type: bool\n  default: true\n```\n**value** = plain values, for example `type: text` and `unique: true`.\n\nTypes: text, number, bool, enum. Leave both empty for a free-form list without validation. See the README for all options.",
+        "data": {
+          "name": "Name",
+          "columns": "Columns (columns)",
+          "value": "Value type (value)"
+        }
+      }
+    },
+    "error": {
+      "invalid_schema": "Invalid schema: {error}"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "List schema",
+        "description": "Optional schema. **columns** = list of objects, for example:\n```\n- key: name\n  label: Name\n  required: true\n  unique: true\n- key: role\n  type: enum\n  options: [admin, user]\n- key: active\n  type: bool\n  default: true\n```\n**value** = plain values, for example `type: text` and `unique: true`.\n\nTypes: text, number, bool, enum. Leave both empty for a free-form list without validation. See the README for all options.",
+        "data": {
+          "columns": "Columns (columns)",
+          "value": "Value type (value)"
+        }
+      }
+    },
+    "error": {
+      "invalid_schema": "Invalid schema: {error}"
+    }
+  },
+  "exceptions": {
+    "not_a_list": {
+      "message": "{entity_id} is not a list from the Editable Lists integration."
+    },
+    "not_loaded": {
+      "message": "List {entity_id} is not loaded."
+    },
+    "revision_conflict": {
+      "message": "The list has changed in the meantime (revision {current}, expected {expected}). Reload it and try again."
+    },
+    "invalid_items": {
+      "message": "Invalid data: {errors}"
+    },
+    "not_found": {
+      "message": "No item matches."
+    },
+    "ambiguous_match": {
+      "message": "The match selects {count} items, exactly one is needed."
+    },
+    "need_index_or_match": {
+      "message": "Provide 'index' or 'match'."
+    },
+    "need_data_or_item": {
+      "message": "Provide exactly one of 'data' (merge into object) or 'item' (replace item)."
+    },
+    "not_an_object": {
+      "message": "Item {index} is not an object, use 'item' instead of 'data'."
+    },
+    "index_out_of_range": {
+      "message": "Index {index} is out of range ({count} items)."
+    }
+  },
+  "services": {
+    "set": {
+      "name": "Set list",
+      "description": "Replaces the whole list.",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        },
+        "items": {
+          "name": "Items",
+          "description": "New content (array)."
+        },
+        "revision": {
+          "name": "Revision",
+          "description": "Optional: only save if the list has not changed since this revision."
+        }
+      }
+    },
+    "add": {
+      "name": "Add item",
+      "description": "Adds an item at the end or at a position.",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        },
+        "item": {
+          "name": "Item",
+          "description": "Value or object."
+        },
+        "position": {
+          "name": "Position",
+          "description": "Where to insert (from 0, -1 = end). Default: end."
+        }
+      }
+    },
+    "update": {
+      "name": "Update item",
+      "description": "Updates items selected by index or match.",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        },
+        "index": {
+          "name": "Index",
+          "description": "Item position from 0; negative counts from the end (-1 = last)."
+        },
+        "match": {
+          "name": "Match",
+          "description": "Selects items by values, e.g. name: Filip; for plain lists the value itself. Text is compared case-insensitively."
+        },
+        "data": {
+          "name": "Data",
+          "description": "Merges only the given keys into the object."
+        },
+        "item": {
+          "name": "Item",
+          "description": "Replaces the whole item."
+        }
+      }
+    },
+    "remove": {
+      "name": "Remove item",
+      "description": "Removes items selected by index or match.",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        },
+        "index": {
+          "name": "Index",
+          "description": "Item position from 0; negative counts from the end (-1 = last)."
+        },
+        "match": {
+          "name": "Match",
+          "description": "Selects items by values, e.g. name: Filip; for plain lists the value itself. Text is compared case-insensitively."
+        }
+      }
+    },
+    "move": {
+      "name": "Move item",
+      "description": "Moves one item to another position.",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        },
+        "index": {
+          "name": "Index",
+          "description": "Item position from 0; negative counts from the end (-1 = last)."
+        },
+        "match": {
+          "name": "Match",
+          "description": "Selects items by values, e.g. name: Filip; for plain lists the value itself. Text is compared case-insensitively."
+        },
+        "to": {
+          "name": "To",
+          "description": "Target position (from 0, -1 = end)."
+        }
+      }
+    },
+    "rotate": {
+      "name": "Rotate list",
+      "description": "Moves the start of the list to the end (first becomes last).",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        },
+        "steps": {
+          "name": "Steps",
+          "description": "How many items. Negative = other direction."
+        }
+      }
+    },
+    "get": {
+      "name": "Get list",
+      "description": "Returns the list content as a response.",
+      "fields": {
+        "entity_id": {
+          "name": "List",
+          "description": "List sensor from the Editable Lists integration."
+        }
+      }
+    }
+  }
+}

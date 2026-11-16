@@ -1,0 +1,193 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nový seznam",
+        "description": "Volitelné schéma. **columns** = seznam objektů, například:\n```\n- key: jmeno\n  label: Jméno\n  required: true\n  unique: true\n- key: role\n  type: enum\n  options: [admin, user]\n- key: aktivni\n  type: bool\n  default: true\n```\n**value** = prosté hodnoty, například `type: text` a `unique: true`.\n\nTypy: text, number, bool, enum. Obojí prázdné = volný seznam bez validace. Všechny volby jsou v README.",
+        "data": {
+          "name": "Název",
+          "columns": "Sloupce (columns)",
+          "value": "Typ hodnoty (value)"
+        }
+      }
+    },
+    "error": {
+      "invalid_schema": "Neplatné schéma: {error}"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Schéma seznamu",
+        "description": "Volitelné schéma. **columns** = seznam objektů, například:\n```\n- key: jmeno\n  label: Jméno\n  required: true\n  unique: true\n- key: role\n  type: enum\n  options: [admin, user]\n- key: aktivni\n  type: bool\n  default: true\n```\n**value** = prosté hodnoty, například `type: text` a `unique: true`.\n\nTypy: text, number, bool, enum. Obojí prázdné = volný seznam bez validace. Všechny volby jsou v README.",
+        "data": {
+          "columns": "Sloupce (columns)",
+          "value": "Typ hodnoty (value)"
+        }
+      }
+    },
+    "error": {
+      "invalid_schema": "Neplatné schéma: {error}"
+    }
+  },
+  "exceptions": {
+    "not_a_list": {
+      "message": "{entity_id} není seznam z integrace Editable Lists."
+    },
+    "not_loaded": {
+      "message": "Seznam {entity_id} není načtený."
+    },
+    "revision_conflict": {
+      "message": "Seznam se mezitím změnil (revize {current}, očekávána {expected}). Načti ho znovu a zkus to znovu."
+    },
+    "invalid_items": {
+      "message": "Neplatná data: {errors}"
+    },
+    "not_found": {
+      "message": "Žádná položka neodpovídá."
+    },
+    "ambiguous_match": {
+      "message": "Shodě odpovídá {count} položek, potřebuji právě jednu."
+    },
+    "need_index_or_match": {
+      "message": "Zadej 'index' nebo 'match'."
+    },
+    "need_data_or_item": {
+      "message": "Zadej právě jedno z 'data' (doplnění objektu) nebo 'item' (náhrada položky)."
+    },
+    "not_an_object": {
+      "message": "Položka {index} není objekt, místo 'data' použij 'item'."
+    },
+    "index_out_of_range": {
+      "message": "Index {index} je mimo seznam ({count} položek)."
+    }
+  },
+  "services": {
+    "set": {
+      "name": "Nastavit seznam",
+      "description": "Nahradí celý obsah seznamu.",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        },
+        "items": {
+          "name": "Položky",
+          "description": "Nový obsah (pole)."
+        },
+        "revision": {
+          "name": "Revize",
+          "description": "Volitelně: uloží jen tehdy, když se seznam od této revize nezměnil."
+        }
+      }
+    },
+    "add": {
+      "name": "Přidat položku",
+      "description": "Přidá položku na konec nebo na zadané místo.",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        },
+        "item": {
+          "name": "Položka",
+          "description": "Hodnota nebo objekt."
+        },
+        "position": {
+          "name": "Pozice",
+          "description": "Kam vložit (od 0, -1 = na konec). Bez zadání na konec."
+        }
+      }
+    },
+    "update": {
+      "name": "Upravit položku",
+      "description": "Upraví položky vybrané indexem nebo shodou.",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        },
+        "index": {
+          "name": "Index",
+          "description": "Pořadí položky od 0, záporné od konce (-1 = poslední)."
+        },
+        "match": {
+          "name": "Shoda",
+          "description": "Vybere položky podle hodnot, např. jmeno: Filip, u prostých seznamů přímo hodnota. Texty bez ohledu na velikost písmen."
+        },
+        "data": {
+          "name": "Data",
+          "description": "Doplní či přepíše jen uvedené klíče objektu."
+        },
+        "item": {
+          "name": "Položka",
+          "description": "Nahradí celou položku."
+        }
+      }
+    },
+    "remove": {
+      "name": "Odebrat položku",
+      "description": "Odebere položky vybrané indexem nebo shodou.",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        },
+        "index": {
+          "name": "Index",
+          "description": "Pořadí položky od 0, záporné od konce (-1 = poslední)."
+        },
+        "match": {
+          "name": "Shoda",
+          "description": "Vybere položky podle hodnot, např. jmeno: Filip, u prostých seznamů přímo hodnota. Texty bez ohledu na velikost písmen."
+        }
+      }
+    },
+    "move": {
+      "name": "Přesunout položku",
+      "description": "Přesune jednu položku na jiné místo.",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        },
+        "index": {
+          "name": "Index",
+          "description": "Pořadí položky od 0, záporné od konce (-1 = poslední)."
+        },
+        "match": {
+          "name": "Shoda",
+          "description": "Vybere položky podle hodnot, např. jmeno: Filip, u prostých seznamů přímo hodnota. Texty bez ohledu na velikost písmen."
+        },
+        "to": {
+          "name": "Na pozici",
+          "description": "Cílová pozice (od 0, -1 = na konec)."
+        }
+      }
+    },
+    "rotate": {
+      "name": "Otočit seznam",
+      "description": "Posune začátek seznamu na konec (první jde na konec).",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        },
+        "steps": {
+          "name": "Kroky",
+          "description": "O kolik položek. Záporné = opačným směrem."
+        }
+      }
+    },
+    "get": {
+      "name": "Načíst seznam",
+      "description": "Vrátí obsah seznamu jako odpověď.",
+      "fields": {
+        "entity_id": {
+          "name": "Seznam",
+          "description": "Senzor seznamu z integrace Editable Lists."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+set:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists
+    items:
+      required: true
+      example: '["Filip", "Patrik"]'
+      selector:
+        object:
+    revision:
+      selector:
+        number:
+          min: 0
+          mode: box
+
+add:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists
+    item:
+      required: true
+      example: '{"prefix": "c7de24", "jmeno": "FilipJBC"}'
+      selector:
+        object:
+    position:
+      selector:
+        number:
+          mode: box
+
+update:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists
+    index:
+      selector:
+        number:
+          mode: box
+    match:
+      example: '{"prefix": "c7de24"}'
+      selector:
+        object:
+    data:
+      example: '{"aktivni": false}'
+      selector:
+        object:
+    item:
+      selector:
+        object:
+
+remove:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists
+    index:
+      selector:
+        number:
+          mode: box
+    match:
+      example: '{"prefix": "c7de24"}'
+      selector:
+        object:
+
+move:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists
+    index:
+      selector:
+        number:
+          mode: box
+    match:
+      selector:
+        object:
+    to:
+      required: true
+      selector:
+        number:
+          mode: box
+
+rotate:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists
+    steps:
+      default: 1
+      selector:
+        number:
+          mode: box
+
+get:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: editable_lists

@@ -1,0 +1,21 @@
+name: Release check
+
+# Before publishing a release: the tag (v1.2.3) must match "version" in manifest.json.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag matches manifest version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          ver="$(jq -r .version custom_components/editable_lists/manifest.json)"
+          echo "tag=$tag manifest=$ver"
+          test "$tag" = "$ver"
